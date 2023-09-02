@@ -1,4 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using DesignPatterns;
+using DesignPatterns.Composite;
+using DesignPatterns.impl;
+using System.Runtime.InteropServices;
 
 #region Strategy
 public interface ISortStrategy
@@ -32,14 +36,14 @@ public class SortableCollection
         Items = items;
     }
 
-    public void Sort() 
-    { 
-        if(SortStrategy == null) 
+    public void Sort()
+    {
+        if (SortStrategy == null)
         {
             throw new NullReferenceException("Sort strategy not found.");
         }
         Items = SortStrategy.Sort(Items);
-    
+
     }
 }
 
@@ -116,4 +120,15 @@ public class DecoratorBComponent : IComponent
         return $"<DecoratorB>{result}</DecoratorB>";
     }
 }
+#endregion
+
+#region Composite
+
+var customerView = Run.It();
+
+foreach (var customer in customerView)
+{
+    Console.WriteLine(customer.Name);
+}
+
 #endregion
